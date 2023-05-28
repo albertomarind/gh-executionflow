@@ -36,7 +36,8 @@ jobs:
         id: run-tests
         run: npm run test
       - name: Upload test report
-        if: steps.run-tests.outcome == 'failure' #Ejecuta el siguiente step si el step anterior falla
+        #La funciona failure regresa true si el job falló. Hay cuatro de esas funciones. failure(), success(), etc..
+        if: failure() && steps.run-tests.outcome == 'failure' #Ejecuta el siguiente step si el step anterior falla
         uses: actions/upload-artifact@v3
         with:
           name: test-report

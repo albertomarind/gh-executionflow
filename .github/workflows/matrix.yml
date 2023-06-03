@@ -7,10 +7,10 @@ jobs:
       matrix:
         node-version: [ 12,14,16 ] #Testing in multiple node versions
         operating-system: [ ubuntu-latest, windows-latest ]
-        include:
+        include: ## adds node 18 with ubuntu-latest
           - node-version: 18
             operating-system: ubuntu-latest
-        exclude:
+        exclude: # exludes node 12 with windows-latest
           - node-version: 12
             operating-system: windows-latest
     runs-on: ${{ matrix.operating-system }} #Run multiple times this job, on different operating systems
